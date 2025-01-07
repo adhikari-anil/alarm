@@ -1,0 +1,155 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+#box{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.main{
+  height: 70%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid blue;
+  border-radius: 5%;
+}
+
+.tabs {
+  width: 50%;
+  height: 10%;
+  display: grid;
+  row-gap: 50px;
+  grid-template-columns: auto auto auto auto;
+}
+
+.set1{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btns{
+  display: flex;
+  gap: 10px;
+}
+
+#tabSwitch2{
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  background: #000;
+  color: aliceblue;
+  overflow: hidden;
+}
+
+.scroll1{
+  padding: 5px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  max-height: 200px;
+}
+
+.scroll1::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
+}
+
+.scroll1 :hover{
+  color: blueviolet;
+}
+
+/* CSS */
+/* body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+#box {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.main {
+  height: 70%;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid blue;
+  border-radius: 5%;
+  overflow-y: auto;
+}
+
+.tabs {
+  width: 50%;
+  height: 10%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.set1 {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btns {
+  display: flex;
+  gap: 10px;
+}
+
+#tabSwitch2 {
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  background: #000;
+  color: aliceblue;
+}
+
+#tabSwitch2 span {
+  display: flex;
+  flex-direction: column;
+}
+
+.scroll1 {
+  border: solid black 2px;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth
+}
+
+.scroll1:hover {
+  color: blueviolet;
+}
+
+#tabSwitch4 {
+  align-items: flex-start;
+  text-align: left;
+} */
