@@ -121,16 +121,20 @@ const scrollableElements = document.querySelectorAll(".scroll1");
 const scrollSound = document.getElementById("scrollSound");
 
 // Function to play the scroll sound
-function playScrollSound() {
+function playScrollSound(soundObject) {
   // Reset the sound to start from the beginning
-  scrollSound.currentTime = 0;
-  scrollSound.play();
+  if(soundObject.id=="scrollSound"){
+    soundObject.currentTime = 0;
+    soundObject.play();
+  }else{
+    soundObject.play();
+  }
 }
 
 // Add scroll event listeners to each scrollable element
 scrollableElements.forEach((element) => {
   element.addEventListener("scroll", () => {
-    playScrollSound();
+    playScrollSound(scrollSound);
   });
 });
 
@@ -203,6 +207,7 @@ function array(time, index) {
   if (Object.keys(obj).length === 4) {
     // timeArray.push(obj);
     // Retrieve existing data
+    obj.set = "on";
     let existingData = JSON.parse(localStorage.getItem("time")) || [];
     // Add new data to the array
     existingData.push(obj);
@@ -234,3 +239,22 @@ function showSetAlaram() {
     }
   }
 }
+
+const pick = document.getElementById("alarmSound");
+
+// Alarm set vako lai bajaune feature..
+setInterval(() => {
+  const now = new Date();
+  const timeNow = now.toTimeString().slice(0, 5);
+  console.log(timeNow);
+  const data = JSON.parse(localStorage.getItem("time"));
+  data.forEach((item) => {
+    if (item.set === "on") {
+      const alarmTime = `${item.hours}:${item.minutes}`;
+      console.log("Checking alarm time:", alarmTime);
+      if (alarmTime === timeNow) {
+        playScrollSound(pick);
+      }
+    }
+  });
+}, 1000);
