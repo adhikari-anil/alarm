@@ -179,7 +179,7 @@ function alaramSeter(array) {
 
     const maxValue = i === 0 ? 24 : 60;
     console.log(maxValue);
-    for (let j = 1; j <= maxValue; j++) {
+    for (let j = 0; j < maxValue; j++) {
       const p = document.createElement("p");
       p.innerHTML = j;
       p.addEventListener("click", () => {
