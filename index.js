@@ -128,6 +128,9 @@ function playScrollSound(soundObject) {
     soundObject.play();
   }else{
     soundObject.play();
+    setTimeout(()=>{
+      soundObject.pause();
+    },1000*60);
   }
 }
 
