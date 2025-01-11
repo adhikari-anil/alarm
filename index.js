@@ -102,7 +102,7 @@ async function timeGetter() {
 
     try {
       const response = await fetch(
-        `https://api.ipgeolocation.io/timezone?apiKey=062a745dc5ad4c6d91374f813881d90f&location=${city}, ${country}`
+        `https://api.ipgeolocation.io/timezone?apiKey="YourAPIKey"&location=${city}, ${country}`
       );
       if (!response.ok) throw new Error("Failed to fetch time data");
 
@@ -123,14 +123,15 @@ const scrollSound = document.getElementById("scrollSound");
 // Function to play the scroll sound
 function playScrollSound(soundObject) {
   // Reset the sound to start from the beginning
-  if(soundObject.id=="scrollSound"){
+  if (soundObject.id == "scrollSound") {
     soundObject.currentTime = 0;
     soundObject.play();
-  }else{
+  } else if (soundObject.id == "alarmSound") {
     soundObject.play();
-    setTimeout(()=>{
-      soundObject.pause();
-    },1000*60);
+    // setTimeout(()=>{
+    //   soundObject.pause();
+    // },1000*60);
+    showNotification(soundObject);
   }
 }
 
@@ -211,6 +212,8 @@ function array(time, index) {
     // timeArray.push(obj);
     // Retrieve existing data
     obj.set = "on";
+    obj.triggered = false;
+    obj.dismissed = false;
     let existingData = JSON.parse(localStorage.getItem("time")) || [];
     // Add new data to the array
     existingData.push(obj);
@@ -226,18 +229,18 @@ function showSetAlaram() {
   console.log("is it an Array? ", div);
   const timeArray1 = localStorage.getItem("time");
   console.log("length: ", timeArray1);
-  const alarams = JSON.parse(timeArray1);
-  console.log(alarams);
-  if (timeArray1.length == 0 || alarams === null) {
+  const alarms = JSON.parse(timeArray1);
+  console.log(alarms);
+  if (!alarms) {
     const h1 = document.createElement("h1");
     h1.innerHTML = "No any alaram set yet!";
     div.appendChild(h1);
   } else {
     console.log("Aba chalxah!...");
     div.innerHTML = "";
-    for (let i = 0; i < alarams.length; i++) {
+    for (let i = 0; i < alarms.length; i++) {
       const h1 = document.createElement("h1");
-      h1.innerHTML = `${alarams[i].hours} : ${alarams[i].minutes} : ${alarams[i].second} ${alarams[i].period}`;
+      h1.innerHTML = `${alarms[i].hours} : ${alarms[i].minutes} : ${alarms[i].second} ${alarms[i].period}`;
       div.appendChild(h1);
     }
   }
@@ -251,13 +254,57 @@ setInterval(() => {
   const timeNow = now.toTimeString().slice(0, 5);
   console.log(timeNow);
   const data = JSON.parse(localStorage.getItem("time"));
+  let dataChanged = false;
   data.forEach((item) => {
     if (item.set === "on") {
       const alarmTime = `${item.hours}:${item.minutes}`;
       console.log("Checking alarm time:", alarmTime);
-      if (alarmTime === timeNow) {
+      if (alarmTime === timeNow && !item.triggered && !item.dismissed) {
         playScrollSound(pick);
+        item.triggered = true;
+        dataChanged = true;
       }
     }
   });
+  if (dataChanged) {
+    localStorage.setItem("time", JSON.stringify(data));
+  }
 }, 1000);
+
+const notificationContainer = document.getElementById("notification-container");
+const closeNotification = document.getElementById("dismiss-button");
+
+function showNotification(soundObject) {
+  document.getElementById("notification-message").textContent =
+    "Alarm is ringing....";
+  notificationContainer.classList.remove("hidden");
+
+  // multiple eventlistener add hune vako le code add gareko...
+  closeNotification.removeEventListener("click", handleDissmiss);
+
+  function handleDissmiss() {
+    hideNotification(soundObject);
+  }
+
+  closeNotification.addEventListener("click", handleDissmiss);
+}
+
+function hideNotification(soundObject) {
+  notificationContainer.classList.add("hidden");
+  soundObject.pause();
+  soundObject.currentTime = 0;
+  resetAlarmStatus();
+}
+
+function resetAlarmStatus() {
+  const data = JSON.parse(localStorage.getItem("time"));
+  if (!data) return;
+
+  data.forEach((item) => {
+    if(item.triggered==true){
+      item.dismissed=true;
+    }
+    item.triggered = false; // Reset the triggered status
+  });
+  localStorage.setItem("time", JSON.stringify(data));
+}
