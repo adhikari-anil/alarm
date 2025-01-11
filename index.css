@@ -7,6 +7,43 @@ body {
     color: #333;
 }
 
+/* Notification container styling */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #ffeb3b;
+  color: #000;
+  border: 1px solid #fbc02d;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  z-index: 9999;
+}
+
+/* Hide notification when not active */
+.hidden {
+  display: none;
+}
+
+/* Dismiss button styling */
+#dismiss-button {
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#dismiss-button:hover {
+  background-color: #b71c1c;
+}
+
 #box{
   height: 100vh;
   display: flex;
