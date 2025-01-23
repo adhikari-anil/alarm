@@ -133,3 +133,11 @@ body {
 .scroll1 :hover{
   color: blueviolet;
 }
+
+.scroll-headers {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  font-weight: bold;
+  gap: 10px;
+}

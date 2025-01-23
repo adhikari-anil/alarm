@@ -142,34 +142,6 @@ scrollableElements.forEach((element) => {
   });
 });
 
-// reuseable code for date maker...
-//function alaramSeter() {
-//const datePlace = document.getElementsByClassName("scroll1");
-//console.log("From set alaram: ", datePlace);
-// for(i=0;i<datePlace.length;i++){
-//   if(i==0){
-//     for(j=1;j<=24;j++){
-//       p=document.createElement("p");
-//       p.innerHTML=j;
-//       datePlace[0].appendChild(p);
-//     }
-//     console.log("Repeat Vaye hai mah! ");
-//   }
-//   if(i==1){
-//     for(j=1;j<=60;j++){
-//       p=document.createElement("p");
-//       p.innerHTML=j;
-//       datePlace[1].appendChild(p);
-//     }
-//   }
-//   if(i==2){
-//     for(j=1;j<=60;j++){
-//       p=document.createElement("p");
-//       p.innerHTML=j;
-//       datePlace[2].appendChild(p);
-//     }
-//   }
-// }
 function alaramSeter(array) {
   const datePlace = document.getElementsByClassName("scroll1");
   //const amPm = document.getElementsByClassName("amPm")[0];
@@ -230,7 +202,7 @@ function showSetAlaram() {
   const timeArray1 = localStorage.getItem("time");
   console.log("length: ", timeArray1);
   const alarms = JSON.parse(timeArray1);
-  console.log(alarms);
+  console.log("Alarms: ", alarms);
   if (!alarms) {
     const h1 = document.createElement("h1");
     h1.innerHTML = "No any alaram set yet!";
@@ -238,11 +210,15 @@ function showSetAlaram() {
   } else {
     console.log("Aba chalxah!...");
     div.innerHTML = "";
-    for (let i = 0; i < alarms.length; i++) {
+    // for (let i = 0; i < alarms.length; i++) {
+    // }
+    alarms.map((alarm) => {
       const h1 = document.createElement("h1");
-      h1.innerHTML = `${alarms[i].hours} : ${alarms[i].minutes} : ${alarms[i].second} ${alarms[i].period}`;
+      h1.innerHTML = `${String(alarm.hours)}:${String(
+        alarm.minutes
+      ).padStart(2, "0")}:${String(alarm.second).padStart(2, "0")} ${String(alarm.period)}`;
       div.appendChild(h1);
-    }
+    });
   }
 }
 
@@ -257,10 +233,9 @@ setInterval(() => {
   let dataChanged = false;
   data.forEach((item) => {
     if (item.set === "on") {
-      const alarmTime = `${String(item.hours).padStart(2, "0")}:${String(item.minutes).padStart(
-        2,
-        "0"
-      )}`;
+      const alarmTime = `${String(item.hours).padStart(2, "0")}:${String(
+        item.minutes
+      ).padStart(2, "0")}`;
       console.log("Checking alarm time:", alarmTime);
       if (alarmTime === timeNow && !item.triggered && !item.dismissed) {
         playScrollSound(pick);
@@ -304,8 +279,8 @@ function resetAlarmStatus() {
   if (!data) return;
 
   data.forEach((item) => {
-    if(item.triggered==true){
-      item.dismissed=true;
+    if (item.triggered == true) {
+      item.dismissed = true;
     }
     item.triggered = false; // Reset the triggered status
   });

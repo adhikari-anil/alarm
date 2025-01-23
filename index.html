@@ -12,7 +12,7 @@
         <p id="notification-message">Alarm is ringing!</p>
         <button id="dismiss-button">Dismiss</button>
       </div>
-      <div id="" class="information">
+      <div class="information">
         <p>AL => Alarm List</p>
         <p>AS => Alarm Set</p>
         <p>ST => Stopwatch Timer</p>
@@ -27,10 +27,15 @@
         ></audio>
       </div>
       <div id="tabSwitch2" class="main">
-        <div class="scroll1"></div>
-        <div class="scroll1"></div>
-        <div class="scroll1">
+        <div class="information">
+          <p>Column1 for Hours</p>
+          <p>Column2 for Minutes</p>
+          <p>Column3 for Second</p>
+          <p>Scroll column and select time</p>
         </div>
+        <div class="scroll1"></div>
+        <div class="scroll1"></div>
+        <div class="scroll1"></div>
       </div>
       <div id="tabSwitch3" class="main">
         <h1 id="tabh1">00:00:00</h1>
@@ -54,7 +59,10 @@
         <button class="link" onclick="openTab('tabSwitch3')">S.T</button>
         <button class="link" onclick="openTab('tabSwitch4')">W.T</button>
       </div>
-      <audio id="scrollSound" src="./Sounds/minimal-pop-click-ui-1-198301.mp3"></audio>
+      <audio
+        id="scrollSound"
+        src="./Sounds/minimal-pop-click-ui-1-198301.mp3"
+      ></audio>
     </div>
     <script src="index.js"></script>
   </body>
