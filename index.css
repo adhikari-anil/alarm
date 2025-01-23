@@ -25,6 +25,24 @@ body {
   z-index: 9999;
 }
 
+.information {
+  position: fixed;
+  top: 20px;
+  left: 0px;
+  background-color: #ffeb3b;
+  color: #000;
+  border: 1px solid #fbc02d;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  gap: 10px;
+  z-index: 9999;
+}
+
 /* Hide notification when not active */
 .hidden {
   display: none;
@@ -115,83 +133,3 @@ body {
 .scroll1 :hover{
   color: blueviolet;
 }
-
-/* CSS */
-/* body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  background-color: #f9f9f9;
-  color: #333;
-}
-
-#box {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-}
-
-.main {
-  height: 70%;
-  width: 70%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  justify-content: center;
-  align-items: center;
-  border: 1px solid blue;
-  border-radius: 5%;
-  overflow-y: auto;
-}
-
-.tabs {
-  width: 50%;
-  height: 10%;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-}
-
-.set1 {
-  width: 90%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.btns {
-  display: flex;
-  gap: 10px;
-}
-
-#tabSwitch2 {
-  display: flex;
-  flex-direction: row;
-  gap: 50px;
-  background: #000;
-  color: aliceblue;
-}
-
-#tabSwitch2 span {
-  display: flex;
-  flex-direction: column;
-}
-
-.scroll1 {
-  border: solid black 2px;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  scroll-behavior: smooth
-}
-
-.scroll1:hover {
-  color: blueviolet;
-}
-
-#tabSwitch4 {
-  align-items: flex-start;
-  text-align: left;
-} */
