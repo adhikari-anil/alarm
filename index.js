@@ -8,15 +8,15 @@ function openTab(id) {
 
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
-    if (id == "tabSwitch4") {
-      timeGetter();
-      console.log("Function Liyo!");
-    } else if (id == "tabSwitch2") {
-      alaramSeter(array);
-      console.log("alaram function liyo...");
-    } else if (id == "tabSwitch1") {
-      showSetAlaram();
-    }
+  }
+  if (id == "tabSwitch4") {
+    timeGetter();
+    console.log("Function Liyo!");
+  } else if (id == "tabSwitch2") {
+    alaramSeter(array);
+    console.log("alaram function liyo...");
+  } else if (id == "tabSwitch1") {
+    showSetAlaram();
   }
   document.getElementById(id).style.display = "flex";
 }
@@ -102,7 +102,7 @@ async function timeGetter() {
 
     try {
       const response = await fetch(
-        `https://api.ipgeolocation.io/timezone?apiKey="YourAPIKey"&location=${city}, ${country}`
+        `https://api.ipgeolocation.io/timezone?apiKey=062a745dc5ad4c6d91374f813881d90f&location=${city}, ${country}`
       );
       if (!response.ok) throw new Error("Failed to fetch time data");
 
@@ -257,7 +257,10 @@ setInterval(() => {
   let dataChanged = false;
   data.forEach((item) => {
     if (item.set === "on") {
-      const alarmTime = `${item.hours}:${item.minutes}`;
+      const alarmTime = `${String(item.hours).padStart(2, "0")}:${String(item.minutes).padStart(
+        2,
+        "0"
+      )}`;
       console.log("Checking alarm time:", alarmTime);
       if (alarmTime === timeNow && !item.triggered && !item.dismissed) {
         playScrollSound(pick);
